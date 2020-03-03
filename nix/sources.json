@@ -1,0 +1,50 @@
+{
+    "gitignore": {
+        "branch": "master",
+        "description": "Nix function for filtering local git sources",
+        "homepage": "",
+        "owner": "hercules-ci",
+        "repo": "gitignore",
+        "rev": "7415c4feb127845553943a3856cbc5cb967ee5e0",
+        "sha256": "1zd1ylgkndbb5szji32ivfhwh04mr1sbgrnvbrqpmfb67g2g3r9i",
+        "type": "tarball",
+        "url": "https://github.com/hercules-ci/gitignore/archive/7415c4feb127845553943a3856cbc5cb967ee5e0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "98c74a80934123cb4c3bf3314567f67311eb711a",
+        "sha256": "1w8n54hapd4x9f1am33icvngkqns7m3hl9yair38yqq08ffwg0kn",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/niv/archive/98c74a80934123cb4c3bf3314567f67311eb711a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nix-npm-buildpackage": {
+        "branch": "master",
+        "description": "build nix packages that use npm/yarn packages",
+        "homepage": "",
+        "owner": "serokell",
+        "repo": "nix-npm-buildpackage",
+        "rev": "9e7c1fcd5d439a4d453f09898298a55b379ef5c6",
+        "sha256": "1n0hnx86lhgmryj21n6vgwdsw8lw4vzkyb2myaj54fkswn6vx0hv",
+        "type": "tarball",
+        "url": "https://github.com/serokell/nix-npm-buildpackage/archive/9e7c1fcd5d439a4d453f09898298a55b379ef5c6.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "master",
+        "description": "Pinned Nixpkgs tree (master follows nixos-unstable-small, only tags have stable history)",
+        "homepage": "",
+        "owner": "serokell",
+        "repo": "nixpkgs",
+        "rev": "45c5124eab8b6272b6d868fefe405d8031c16846",
+        "sha256": "0mrx31aswr58jwdfsklhi945yw6iz2rbqiiapydrz8frfclk9yry",
+        "type": "tarball",
+        "url": "https://github.com/serokell/nixpkgs/archive/45c5124eab8b6272b6d868fefe405d8031c16846.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

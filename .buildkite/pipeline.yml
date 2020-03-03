@@ -1,0 +1,26 @@
+steps:
+  - label: nix build
+    command: nix-build
+    agents:
+      private: true
+
+  - label: terraform validate
+    command: nix-shell --run scripts/terraform-validate.sh
+    agents:
+      private: true
+
+  - wait
+
+  - label: deploy staging
+    command: scripts/deploy.sh staging system
+    branches:
+      - staging
+    agents:
+      private: true
+
+  - label: deploy production
+    command: scripts/deploy.sh production system
+    branches:
+      - production
+    agents:
+      private: true

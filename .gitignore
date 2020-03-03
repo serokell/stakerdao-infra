@@ -1,0 +1,8 @@
+.envrc
+.terraform/
+terraform.tfstate*
+out/
+err/
+*.key
+*.yaml
+/agora
