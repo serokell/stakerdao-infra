@@ -1,117 +1,57 @@
-# Tezos Infrastructure
+# StakerDAO Infrastructure Code
 
-This repository defines machines and resources for the part of the Tezos
-infrastructure operated by Serokell OÜ.
+This repository describes and configures the AWS infrastructure that runs the
+StakerDAO cluster, currently two machines:
 
-All AWS resources are managed by Terraform. Machine configuration is managed
-with Nix, and all machines run NixOS.
+* Staging at `agora-staging.stakerdao.serokell.team`
+* Production at `agora.stakerdao.serokell.team`
 
-All necessary programs and dependencies are provided by Nix in `shell.nix`.
+## Terraform
 
-## Repository layout
+There's a single cluster, defined in `terraform/main.tf`.
 
-```
-.
-├── hosts
-├── lib
-│   └── default.nix
-├── main.tf
-├── nix
-│   ├── default.nix
-│   ├── overlays.nix
-│   ├── sources.json
-│   └── sources.nix
-├── nixops-libvirt.nix
-├── profiles
-│   ├── default.nix
-│   ├── mainnet
-│   │   └── default.nix
-│   ├── ssh-keys.nix
-│   └── testnet
-│       └── babylon
-│           └── default.nix
-├── README.md
-└── shell.nix
+All terraform commands are to be run in the `terraform` folder.
 
-```
+Your AWS credential profile should be called `stakerdao`.
 
-* The `hosts` file defines target hosts for `pssh`. See below.
-* The `lib` folder contains reusable functions to help with profile management.
-* The `main.tf` terraform file contains all cloud resource declarations.
-* The `nix` folder defines a local Nix resource pin used in `shell.nix`.
-* The `nixops-libvirt.nix` file defines VM deployments for local hacking.
-* The `profiles` folder contains Nix expressions to configure each server type.
-* The `profiles/ssh-keys.nix` file defines shell accounts and associated SSH keys.
-* The `profiles/default.nix` file defines defaults applied to all machines.
-* The `shell.nix` file defines a managed shell environment with all necessary
-  dependencies to work with this repository.
+Run `terraform init` once to install the plugins and initialize local state.
 
-## Usage
+Check your changes with `terraform plan`, and commit them with `terraform apply`.
 
-First, make sure you have [Nix](https://nixos.org/nix/) installed.
+## Deployment
 
-Then, open a managed shell: `nix-shell`. This will drop you in a Bash shell with
-all necessary tools and dependencies loaded.
+Deployment is handled by `scripts/deploy.sh`, usually from CI. The system
+closure is built in CI, then pushed and activated on the target server. Nothing
+is built or evaluated on the target.
 
-### Vault
-[Vault](https://www.vaultproject.io/) is a secrets management service
-from Hashicorp. We use it to store secrets that can be used to access
-our code. Serokell employees can use `vault login -method=oidc` to
-generate the neccesary token.
+Two separate closures are necessary for the server to function: the system
+closure, and the agora service closure. The script handles both.
 
-### Terraform
+The system closure is described in this repository. The agora closure is
+defined in the `stakerdao-agora` repository. This allows to deploy agora
+updates independently from system updates.
 
-Terraform is an Infrastructure as Code tool from Hashicorp. Read more
-[here](https://www.terraform.io/).
+**The service config is defined via the `agora` module in this repository, and is
+part of the system closure. Thus, config changes require a system closure
+update.**
 
-The first time you use it, you need to run `terraform init`. This will
-initialize local state and download any missing plugins.
+The only bit of necessary state on the server is a set of Vault credentials in
+`/root/vault-secrets.env.d/agora`. See below.
 
-Terraform resources are declared in `main.tf`.
+## Secrets
 
-Your main workhorse will be `terraform apply`, which will print a diff view of
-any resource changes, and ask you whether you want to commit them. Please read
-this output carefully, as Terraform will not hesitate to nuke anything it thinks
-needs nuking.
+All secrets are stored in Vault.
 
-### Server profiles
+Two AppRole policies manage access to runtime secrets: `stakerdao-agora` and
+`stakerdao-agora-staging`. The `vault-get-approle-env.sh` script in
+`serokell-profiles` will give you the correct format.
 
-Server configuration files live in the `profiles` folder. `profiles/default.nix`
-applies to all servers, and each server config only adds what is necessary for itself.
+Run as such:
 
-### Tezos nodes
+    scripts/vault-get-approle-env.sh <AppRole name>
 
-Tezos nodes are mostly the same, with the exception of the Docker tag they run.
-For this reason, the entire config is defined as a parametrized Nix function in
-`lib/default.nix`.
+And paste the output in `/root/vault-secrets.env.d/agora`.
 
-### Updating servers
-
-All servers are configured to pull its configuration, rather than have it
-pushed. You will find that one of the two Nix channels configured points at this
-repository's master branch.
-
-`amazon-init` will configure Nix channels and rebuild the server on boot, which
-should not take long, since we use custom AMIs. This will provision SSH users
-based on `profiles/ssh-keys.nix`.
-
-Changes are not deployed automatically. After a new commit has been pushed to
-the master branch of this repository, you still need to run `nixos-rebuild
-switch --upgrade` in order to tell the server to pull the new configuration and
-rebuild itself.
-
-This also happens automatically on server boot via the `amazon-init` systemd
-unit. This unit will also overwrite any nix channels with the ones provided via
-`user_data` by Terraform.
-
-The tool `pssh` will help here:
-
-```
-$ pssh -h hosts -o out -e err sudo nixos-rebuild switch --upgrade
-```
-
-You can watch the output in another console:
-
-```
-$ tail -f {err,out}/<hostname>
-```
+The one deploy-time secret, an SSH key that allows access to the `buildkite`
+user on target machines, is only accessible to the `stakerdao-infra` buildkite
+pipeline.
