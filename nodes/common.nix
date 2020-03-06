@@ -118,9 +118,5 @@ in {
     logRefusedConnections = false;
   };
 
-  nix.binaryCaches = [
-    "https://cache.nixos.org"
-  ];
-
   nix.binaryCachePublicKeys = [ "serokell-1:aIojg2Vxgv7MkzPJoftOO/I8HKX622sT+c0fjnZBLj0=" ];
 }
