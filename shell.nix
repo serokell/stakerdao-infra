@@ -10,7 +10,6 @@ mkShell {
       awscli
       bash
       jq
-      niv
       nixopsUnstable
       tf
       vault-bin
