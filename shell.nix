@@ -1,18 +1,14 @@
 { pkgs ? import ./nix {} }: with pkgs;
 let
   tf = terraform_0_12.withPlugins(p: with p; [
-    aws vault
+    aws
   ]);
 in
 
 mkShell {
   buildInputs = [
-      awscli
-      bash
-      jq
       nixopsUnstable
       tf
-      vault-bin
   ];
 
   VAULT_ADDR = "https://vault.serokell.org:8200";
