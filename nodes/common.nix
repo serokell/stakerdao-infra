@@ -120,8 +120,6 @@ in {
 
   nix.binaryCaches = [
     "https://cache.nixos.org"
-    "s3://serokell-public-cache?endpoint=s3.eu-central-1.wasabisys.com"
-    "s3://serokell-private-cache?endpoint=s3.eu-central-1.wasabisys.com"
   ];
 
   nix.binaryCachePublicKeys = [ "serokell-1:aIojg2Vxgv7MkzPJoftOO/I8HKX622sT+c0fjnZBLj0=" ];
