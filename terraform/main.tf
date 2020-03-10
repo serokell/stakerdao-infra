@@ -234,8 +234,7 @@ resource "aws_route53_record" "stakerdao_production_ipv4" {
   name    = "agora.stakerdao.serokell.team"
   type    = "A"
   ttl     = "60"
-  # records = [aws_instance.stakerdao_production.public_ip]
-  records = ["35.178.199.148"]
+  records = [aws_instance.stakerdao_production.public_ip]
 }
 
 resource "aws_route53_record" "stakerdao_production_ipv6" {
@@ -243,8 +242,7 @@ resource "aws_route53_record" "stakerdao_production_ipv6" {
   name    = "agora.stakerdao.serokell.team"
   type    = "AAAA"
   ttl     = "60"
-  # records = [aws_instance.stakerdao_production.ipv6_addresses[0]]
-  records = ["2a05:d01c:e6e:de00:93b6:f1da:7106:c3cb"]
+  records = [aws_instance.stakerdao_production.ipv6_addresses[0]]
 }
 
 ## Bucket for TF state storage
