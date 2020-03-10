@@ -44,7 +44,10 @@ in {
   };
 
   services.acme-sh.certs.agora = {
-    domains."${dns_name}" = "dns_aws";
+    domains = {
+      "${dns_name}" = "dns_aws";
+      "${config.networking.hostName}-test.${config.networking.domain}" = "dns_aws";
+    };
     mainDomain = dns_name;
     postRun = "systemctl reload nginx || true";
     keyFile = "${vs.acme-sh}/environment";
