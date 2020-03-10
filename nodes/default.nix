@@ -16,6 +16,5 @@
 
     networking.hostName = "agora";
     services.nginx.virtualHosts.agora.serverAliases = [ cname ];
-    services.acme-sh.certs.agora.domains."${cname}" = "dns_aws";
   };
 }

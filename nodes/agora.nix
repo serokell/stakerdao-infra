@@ -38,29 +38,16 @@ in {
 
   networking.domain = "stakerdao.serokell.team";
 
-  vault-secrets.secrets.acme-sh = {
-    inherit (config.services.nginx) user;
-    services = [ "acme-sh-agora" ];
-  };
-
-  services.acme-sh.certs.agora = {
-    domains."${dns_name}" = "dns_aws";
-    mainDomain = dns_name;
-    postRun = "systemctl reload nginx || true";
-    keyFile = "${vs.acme-sh}/environment";
-    production = true;
-    inherit (config.services.nginx) user group;
-  };
-
   services.nginx.enable = true;
-  services.nginx.virtualHosts.agora = let
-    cert = config.services.acme-sh.certs.agora;
-  in {
+  services.nginx.virtualHosts.agora = {
     default = true;
     serverName = dns_name;
-
     forceSSL = true;
-    sslCertificate = cert.certPath;
-    sslCertificateKey = cert.keyPath;
+    enableACME = true;
+  };
+
+  security.acme = {
+    email = "operations@serokell.io";
+    acceptTerms = true;
   };
 }
