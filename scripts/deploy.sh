@@ -147,7 +147,7 @@ case "$TARGET_MACHINE" in
     TARGET='3.9.146.241'
 
     # FIXME: Point at staging branch after PR merge
-    REF='mkaito/sdao89-profile-env'
+    REF='staging'
 
     NODE=staging
     ;;
@@ -156,7 +156,7 @@ case "$TARGET_MACHINE" in
     TARGET='35.177.67.81'
 
     # FIXME: Point at staging branch after PR merge
-    REF='mkaito/sdao89-profile-env'
+    REF='production'
 
     NODE=production
     ;;
