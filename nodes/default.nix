@@ -7,12 +7,15 @@
     networking.hostName = "agora-staging";
   };
 
-  production = {
+  production = let
+    cname = "governance.stakerdao.com";
+  in {
     imports = [
       ./agora.nix
     ];
 
     networking.hostName = "agora";
-    services.nginx.virtualHosts.agora.serverAliases = [ "governance.stakerdao.com" ];
+    services.nginx.virtualHosts.agora.serverAliases = [ cname ];
+    services.acme-sh.certs.agora.domains."${cname}" = "dns_aws";
   };
 }
