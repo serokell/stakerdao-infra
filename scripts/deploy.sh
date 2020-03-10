@@ -143,21 +143,13 @@ function prepare_service_repo() {
 
 case "$TARGET_MACHINE" in
   staging)
-    # FIXME: Update to DNS name after switching
-    TARGET='3.9.146.241'
-
-    # FIXME: Point at staging branch after PR merge
-    REF='staging'
-
+    TARGET='agora-staging.stakerdao.serokell.team'
+    REF=staging
     NODE=staging
     ;;
   production)
-    # FIXME: Update to DNS name after switching
-    TARGET='35.177.67.81'
-
-    # FIXME: Point at staging branch after PR merge
-    REF='production'
-
+    TARGET='agora.stakerdao.serokell.team'
+    REF=production
     NODE=production
     ;;
   *)
