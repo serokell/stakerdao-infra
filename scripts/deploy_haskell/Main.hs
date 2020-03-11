@@ -6,7 +6,7 @@ import Control.Applicative (optional)
 import System.Posix.Temp (mkdtemp)
 import Data.Maybe (fromMaybe, fromJust)
 import Data.Char (toLower)
-import Control.Monad (when, void)
+import Control.Monad (when, void, liftM2)
 import Control.Exception (try, IOException)
 import HSH
 
@@ -75,7 +75,7 @@ push opts@Opts {..} path = do
 activate :: Opts -> FilePath -> IO ()
 activate opts@Opts {..} path = runIO ("ssh", [ssh opts, activationCommand opts path])
 
-(>>-) m f c = m c >>= f c
+(>>-) = liftM2 (>>=)
 infixl 2 >>-
 
 deploy :: Opts -> IO ()
