@@ -28,6 +28,7 @@ in {
       contract = {
         address = "KT1EctCuorV2NfVb1XTQgvzJ88MQtWP8cMMv";
         contract_block_level = 767840;
+        contract_start = "2020-01-01";
       };
       discourse = {
         category = "Proposals Submitted";
