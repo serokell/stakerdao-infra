@@ -4,11 +4,6 @@ steps:
     agents:
       private: true
 
-  - label: terraform validate
-    command: nix-shell --run scripts/terraform-validate.sh
-    agents:
-      private: true
-
   - wait
 
   - label: deploy staging
