@@ -47,6 +47,10 @@ in
           type = types.ints.positive;
           example = 176671;
         };
+        contract_start = mkOption {
+          type = types.str;
+          example = "2020-01-01";
+        };
       };
 
       node_addr = mkOption {
