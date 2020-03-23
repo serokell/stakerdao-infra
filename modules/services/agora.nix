@@ -137,6 +137,7 @@ in
       ensureDatabases = [ "agora" ];
       ensureUsers = [
         { name = "agora"; ensurePermissions = { "DATABASE \"agora\"" = "ALL"; }; }
+        { name = "sashasashasasha151"; ensurePermissions = { "DATABASE \"agora\"" = "ALL"; }; }
       ];
     };
 
