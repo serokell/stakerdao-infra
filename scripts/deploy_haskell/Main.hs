@@ -62,7 +62,9 @@ deploymentAttr Opts {..} = case deployment of
   Agora -> "deploy"
 
 fetch :: Opts -> IO FilePath
-fetch Opts {..} = run ("nix", ["eval", "--raw", "(builtins.fetchGit { url = ''"<>repo<>"''; ref = ''"<>ref<>"''; })"])
+fetch Opts {..} = case deployment of
+  Agora -> run ("nix", ["eval", "--raw", "(builtins.fetchGit { url = ''"<>repo<>"''; ref = ''"<>ref<>"''; })"])
+  System -> return ".."
 
 build :: Opts -> FilePath -> IO FilePath
 build opts repo_path = run ("nix-build", [repo_path, "-A", deploymentAttr opts])
