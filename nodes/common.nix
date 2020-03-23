@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  wheel = [ "chris" "kirelagin" "yorick" "balsoft" ];
+  wheel = [ "chris" "kirelagin" "yorick" "balsoft" "sashasashasasha151" ];
   expandUser = _name: keys: {
     extraGroups =
       (lib.optionals (builtins.elem _name wheel) [ "wheel" ])
