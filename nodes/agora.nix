@@ -31,7 +31,8 @@ in {
         contract_start = "2020-01-01";
       };
       discourse = {
-        category = "Proposals Submitted";
+        proposal_category = "Proposals Submitted";
+        implementation_category = "Implementation Progress";
         host = "https://forum.stakerdao.com";
       };
     };
