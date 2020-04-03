@@ -74,9 +74,13 @@ in
           type = types.str;
           example = "https://discourse.example.com";
         };
-        category = mkOption {
+        proposal_category = mkOption {
           type = types.str;
           default = "Proposals";
+        };
+        implementation_category = mkOption {
+          type = types.str;
+          default = "Implementation";
         };
         api_username = mkOption {
           type = types.str;
