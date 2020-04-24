@@ -19,3 +19,12 @@ steps:
       - production
     agents:
       private: true
+
+  - label: deploy blnd demo
+    commands:
+      - nix build -f scripts/deploy -o deploy
+      - ./deploy/bin/deploy --repo "ssh://git@github.com/stakerdao/blend-app" --ref "$REF" Blend_Demo System
+    branches:
+      - blnd
+    agents:
+      private: true

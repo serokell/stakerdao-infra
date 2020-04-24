@@ -98,6 +98,39 @@ resource "aws_instance" "stakerdao_production" {
   }
 }
 
+## Blend demo
+resource "aws_instance" "blend_demo" {
+  key_name = aws_key_pair.mkaito.key_name
+
+  # Networking
+  subnet_id = module.vpc.public_subnets[0]
+  associate_public_ip_address = true
+  ipv6_address_count = 1
+  vpc_security_group_ids = [
+    aws_security_group.egress_all.id,
+    aws_security_group.http.id,
+    aws_security_group.prometheus_exporter_node.id,
+    aws_security_group.ssh.id,
+  ]
+
+  # Instance parameters
+  instance_type = "t3a.nano"
+  monitoring = true
+
+  # Disk type, size, and contents
+  ami = data.aws_ami.nixos.id
+
+  lifecycle {
+    ignore_changes = [ ami, user_data ]
+  }
+
+  ebs_optimized = true
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = "20"
+  }
+}
+
 # Allow ALL egress traffic
 resource "aws_security_group" "egress_all" {
   name = "egress_all"
@@ -245,6 +278,23 @@ resource "aws_route53_record" "stakerdao_production_ipv6" {
   records = [aws_instance.stakerdao_production.ipv6_addresses[0]]
 }
 
+## Blend Demo
+resource "aws_route53_record" "blend_demo_ipv4" {
+  zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
+  name    = "blend.stakerdao.serokell.team"
+  type    = "A"
+  ttl     = "60"
+  records = [aws_instance.blend_demo.public_ip]
+}
+
+resource "aws_route53_record" "blend_demo_ipv6" {
+  zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
+  name    = "blend.stakerdao.serokell.team"
+  type    = "AAAA"
+  ttl     = "60"
+  records = [aws_instance.blend_demo.ipv6_addresses[0]]
+}
+
 ## Bucket for TF state storage
 resource "aws_s3_bucket" "tfstate" {
   bucket = "serokell-stakerdao-tfstate"
@@ -288,3 +338,8 @@ output "stakerdao_production_id" {value = aws_instance.stakerdao_production.id}
 output "stakerdao_production_az" {value = aws_instance.stakerdao_production.availability_zone}
 output "stakerdao_production_ipv4" {value = aws_instance.stakerdao_production.public_ip}
 output "stakerdao_production_ipv6" {value = aws_instance.stakerdao_production.ipv6_addresses[0]}
+
+output "blend_demo_id" {value = aws_instance.blend_demo.id}
+output "blend_demo_az" {value = aws_instance.blend_demo.availability_zone}
+output "blend_demo_ipv4" {value = aws_instance.blend_demo.public_ip}
+output "blend_demo_ipv6" {value = aws_instance.blend_demo.ipv6_addresses[0]}
