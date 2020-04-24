@@ -59,6 +59,19 @@ in {
     ../modules
   ];
 
+  networking.domain = "stakerdao.serokell.team";
+
+  vault-secrets = {
+    vaultAddress = "https://vault.serokell.org:8200";
+    vaultPathPrefix = "kv/sys/stakerdao";
+    namespace = config.networking.hostName;
+  };
+
+  security.acme = {
+    email = "operations@serokell.io";
+    acceptTerms = true;
+  };
+
   services.prometheus.exporters.node = {
     enable = true;
     enabledCollectors = [ "systemd" ];
