@@ -19,3 +19,14 @@ steps:
       - production
     agents:
       private: true
+
+  - label: deploy blnd demo
+    commands:
+      - export NIX_PATH=nixpkgs=$(nix eval --raw "((import nix/sources.nix).nixpkgs.outPath)")
+      - cd scripts
+      - nix-build -E "with import <nixpkgs> { }; haskellPackages.callPackage ./deploy { }"
+      - ./result/bin/deploy --repo "ssh://git@github.com/stakerdao/blend-app" --ref "${REF-balsoft/nix}" Blend_Demo System
+    branches:
+      - blnd-demo
+    agents:
+      private: true

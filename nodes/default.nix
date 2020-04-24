@@ -17,4 +17,10 @@
     networking.hostName = "agora";
     services.nginx.virtualHosts.agora.serverAliases = [ cname ];
   };
+
+  blend_demo = {
+    imports = [ ./blend-tender.nix ];
+
+    networking.hostName = "blend";
+  };
 }
