@@ -38,23 +38,26 @@ optionsInfo :: ParserInfo Opts
 optionsInfo = info (options <**> helper) fullDesc
 
 ssh :: Opts -> String
-ssh Opts {..} = targetUser <> "@" <> targetIP
+ssh Opts {..} = targetUser <> "@" <> targetHost
   where
     targetUser = if prime then "root" else "buildkite"
-    targetIP = fromMaybe
+    domain = "stakerdao.serokell.team"
+    targetHost = fromMaybe
       (case target of
-         Staging -> "3.9.146.241"
-         Production -> "35.177.67.81"
-         Blend_Demo -> "") ip
+         Staging -> "agora-staging."<>domain
+         Production -> "agora."<>domain
+         Blend_Demo -> "blend."<>domain) ip
 
 activationCommand :: Opts -> FilePath -> String
-activationCommand Opts {..} path = case deployment of
+activationCommand Opts {..} path =
+  let profile = case target of Blend_Demo -> "blend-tender"; _ -> "agora"
+  in case deployment of
   System -> if prime
-    then "sudo system-activate "<>path
-    else path<>"/bin/switch-to-configuration switch"
+    then path<>"/bin/switch-to-configuration switch"
+    else "sudo system-activate "<>path
   Service -> if prime
-    then "sudo service-activate /nix/var/nix/profiles/agora "<>path
-    else "nix-env --profile /nix/var/nix/profiles/agora --set "<>path<>" && systemctl restart agora"
+    then "nix-env --profile /nix/var/nix/profiles/"<>profile<>" --set "<>path<>" && systemctl restart "<>profile
+    else "sudo service-activate /nix/var/nix/profiles/"<>profile<>" "<>path
 
 deploymentAttr :: Opts -> String
 deploymentAttr Opts {..} = case deployment of

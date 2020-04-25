@@ -149,9 +149,9 @@ in {
 
       serviceConfig = {
         ExecStart =
-          "${profile}/bin/blnd-tedner -c ${configYaml} -c ${vs.blend-tender}/secrets.yml";
+          "${profile}/bin/blnd-tender -c ${configYaml} -c ${vs.blend-tender}/secrets.yml";
         Restart = "always";
-        User = "agora";
+        User = "blend-tender";
       };
     };
 
@@ -159,7 +159,7 @@ in {
       enable = true;
       package = pkgs.postgresql_12;
 
-      ensureDatabases = [ "agora" ];
+      ensureDatabases = [ "blnd" ];
       ensureUsers = [{
         name = "blend-tender";
         ensurePermissions = { "DATABASE \"blnd\"" = "ALL"; };
@@ -169,7 +169,7 @@ in {
     services.nginx = {
       virtualHosts.blend-tender = {
         locations = {
-          "/api/".proxyPass = "http://127.0.0.1:8190";
+          "/api/".proxyPass = "http://127.0.0.1:8190/";
           "/static/".alias = "${profile}/html/";
           "/" = {
             root = "${profile}/html";
