@@ -39,7 +39,7 @@ in {
         };
         secure_cookies = mkOption {
           type = types.bool;
-          default = false;
+          default = true;
         };
         frontend_addr = mkOption {
           type = types.string;
@@ -160,10 +160,10 @@ in {
       package = pkgs.postgresql_12;
 
       ensureDatabases = [ "blnd" ];
-      ensureUsers = [{
-        name = "blend-tender";
+      ensureUsers = map (name: {
+        inherit name;
         ensurePermissions = { "DATABASE \"blnd\"" = "ALL"; };
-      }];
+      }) [ "blend-tender" "gpevnev" "sashasashasasha151" "georgeee" ];
     };
 
     services.nginx = {
