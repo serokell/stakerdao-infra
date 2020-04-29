@@ -15,7 +15,7 @@ let
     };
     min-severity = mkOption {
       type = types.enum [ "Debug" "Info" "Warning" "Error" ];
-      default = "Warning";
+      default = "Debug";
     };
   };
 
