@@ -39,7 +39,7 @@ in {
         };
         secure_cookies = mkOption {
           type = types.bool;
-          default = false;
+          default = true;
         };
         frontend_addr = mkOption {
           type = types.string;
