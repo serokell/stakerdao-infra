@@ -1,7 +1,12 @@
-{
+let
+  sources = import ../nix/sources.nix;
+  serokell-nix = sources."serokell.nix";
+
+in {
   imports = [
     ./services/agora.nix
     ./services/blend-tender.nix
-    ./services/vault-secrets.nix
+
+    "${serokell-nix}/modules/vault-secrets.nix"
   ];
 }

@@ -10,5 +10,17 @@
         "type": "tarball",
         "url": "https://github.com/serokell/nixpkgs/archive/45c5124eab8b6272b6d868fefe405d8031c16846.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "serokell.nix": {
+        "branch": "master",
+        "description": "Serokell Nix infrastructure library",
+        "homepage": null,
+        "owner": "serokell",
+        "repo": "serokell.nix",
+        "rev": "311245725c7f788972d32fc83a77d0d630edf7d4",
+        "sha256": "00r6pdalp95kmpsfjsnv39qcxp3y5fxz0dhqak4ja3z2cb6j262a",
+        "type": "tarball",
+        "url": "https://github.com/serokell/serokell.nix/archive/311245725c7f788972d32fc83a77d0d630edf7d4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
