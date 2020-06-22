@@ -145,9 +145,9 @@ in {
           logging: "$SMTP_LOGIN"
           password: "$SMTP_PASSWORD"
           sender: "$SMTP_SENDER"
-        web3:
-          provider: "$WEB3_PROVIDER"
-          blnd_address: "$WEB3_BLND_ADDRESS"
+        eth:
+          provider: "$ETH_PROVIDER"
+          blnd_address: "$ETH_BLND_ADDRESS"
         EOF
       '';
     };
