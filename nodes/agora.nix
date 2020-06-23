@@ -17,7 +17,7 @@ in {
     enable = true;
     config = {
       api.listen_addr = "*:8190";
-      node_addr = "mainnet.smartpy.io:80";
+      node_addr = "mainnet.tezos.serokell.team:8732";
       db.conn_string =
         "dbname=agora user=agora";
       discourse = {
