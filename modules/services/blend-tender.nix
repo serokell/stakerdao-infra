@@ -15,7 +15,7 @@ let
     };
     min-severity = mkOption {
       type = types.enum [ "Debug" "Info" "Warning" "Error" ];
-      default = "Warning";
+      default = "Debug";
     };
   };
 
@@ -39,7 +39,7 @@ in {
         };
         secure_cookies = mkOption {
           type = types.bool;
-          default = false;
+          default = true;
         };
         frontend_addr = mkOption {
           type = types.string;
@@ -95,8 +95,13 @@ in {
           type = types.str;
           default = "${config.networking.hostName}.${config.networking.domain}";
         };
+        timeout_ms = mkOption {
+          type = types.int;
+          default = 5000;
+          description = "Timeout for all SMTP operations (in milliseconds)";
+        };
       };
-      web3 = {
+      eth = {
         provider = mkOption {
           type = types.str;
           default = "<unset>";
@@ -104,6 +109,11 @@ in {
         blnd_address = mkOption {
           type = types.str;
           default = "<unset>";
+        };
+        fetcher_timeout_sec = mkOption {
+          type = types.int;
+          default = 5;
+          description = "Timeout for EthFetcher (in seconds)";
         };
       };
     };
@@ -135,9 +145,9 @@ in {
           logging: "$SMTP_LOGIN"
           password: "$SMTP_PASSWORD"
           sender: "$SMTP_SENDER"
-        web3:
-          provider: "$WEB3_PROVIDER"
-          blnd_address: "$WEB3_BLND_ADDRESS"
+        eth:
+          provider: "$ETH_PROVIDER"
+          blnd_address: "$ETH_BLND_ADDRESS"
         EOF
       '';
     };
@@ -160,10 +170,10 @@ in {
       package = pkgs.postgresql_12;
 
       ensureDatabases = [ "blnd" ];
-      ensureUsers = [{
-        name = "blend-tender";
+      ensureUsers = map (name: {
+        inherit name;
         ensurePermissions = { "DATABASE \"blnd\"" = "ALL"; };
-      }];
+      }) [ "blend-tender" "gpevnev" "sashasashasasha151" "georgeee" ];
     };
 
     services.nginx = {
