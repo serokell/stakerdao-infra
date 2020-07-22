@@ -87,6 +87,11 @@ in {
           default = 3600;
           description = "Token lifetime (in seconds)";
         };
+        number_of_tokens = mkOption {
+          type = types.int;
+          default = 10;
+          description = "Amount of allowed tokes per user per day";
+        };
         email_subject = mkOption {
           type = types.str;
           default = "BLND tender password reset";
@@ -108,12 +113,22 @@ in {
         };
         blnd_address = mkOption {
           type = types.str;
-          default = "<unset>";
+          default = "0x69c19c0DfBA389a2889d7eFfC0DE6Df91deE35E1";
+        };
+        orchestrator_address = mkOption {
+          type = types.str;
+          default = "0x7E48E377BD992E8D13CC8ce8ffCA0E1D5ee3F7F8";
         };
         fetcher_timeout_sec = mkOption {
           type = types.int;
           default = 5;
           description = "Timeout for EthFetcher (in seconds)";
+        };
+      };
+      buyback_batches = {
+        max_batch_size = mkOption {
+          type = types.int;
+          default = 10;
         };
       };
     };
@@ -147,7 +162,6 @@ in {
           sender: "$SMTP_SENDER"
         eth:
           provider: "$ETH_PROVIDER"
-          blnd_address: "$ETH_BLND_ADDRESS"
         EOF
       '';
     };
