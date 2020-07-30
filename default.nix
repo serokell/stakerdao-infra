@@ -16,4 +16,6 @@ let
   }).config.system.build.toplevel;
   nodes = import ./nodes;
 in
-lib.mapAttrs (lib.const buildSystem) nodes
+  lib.mapAttrs (lib.const buildSystem) nodes // {
+    deploy = pkgs.haskellPackages.callPackage ./scripts/deploy { };
+  }
