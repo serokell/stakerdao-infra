@@ -23,7 +23,8 @@ steps:
   - label: deploy blnd demo
     commands:
       - nix-build -A deploy
-      - ./result/bin/deploy --repo "ssh://git@github.com/stakerdao/blend-app" --ref "${REF-demo}" Blend_Demo System
+      - cd scripts
+      - ../result/bin/deploy --repo "ssh://git@github.com/stakerdao/blend-app" --ref "${REF-demo}" Blend_Demo System
     branches:
       - blnd-demo
     agents:
