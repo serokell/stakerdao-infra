@@ -121,6 +121,13 @@ in {
     }
   ];
 
+  services.nginx = {
+    # SDAO-191
+    eventsConfig = ''
+      worker_connections 2048;
+    '';
+    logError = "stderr info";
+  };
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
