@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  wheel = [ "chris" "kirelagin" "yorick" "balsoft" ];
+  wheel = [ "chris" "kirelagin" "balsoft" "sashasashasasha151" "zhenya" "gpevnev" ];
   expandUser = _name: keys: {
     extraGroups =
       (lib.optionals (builtins.elem _name wheel) [ "wheel" ])
@@ -59,6 +59,19 @@ in {
     ../modules
   ];
 
+  networking.domain = "stakerdao.serokell.team";
+
+  vault-secrets = {
+    vaultAddress = "https://vault.serokell.org:8200";
+    vaultPathPrefix = "kv/sys/stakerdao";
+    namespace = config.networking.hostName;
+  };
+
+  security.acme = {
+    email = "operations@serokell.io";
+    acceptTerms = true;
+  };
+
   services.prometheus.exporters.node = {
     enable = true;
     enabledCollectors = [ "systemd" ];
@@ -108,6 +121,13 @@ in {
     }
   ];
 
+  services.nginx = {
+    # SDAO-191
+    eventsConfig = ''
+      worker_connections 2048;
+    '';
+    logError = "stderr info";
+  };
   services.openssh = {
     enable = true;
     passwordAuthentication = false;

@@ -7,17 +7,11 @@ in {
     ./common.nix
   ];
 
-  vault-secrets = {
-    vaultAddress = "https://vault.serokell.org:8200";
-    vaultPathPrefix = "kv/sys/stakerdao";
-    namespace = config.networking.hostName;
-  };
-
   services.agora = {
     enable = true;
     config = {
       api.listen_addr = "*:8190";
-      node_addr = "mainnet.tezos.serokell.team:8732";
+      node_addr = "https://mainnet-tezos.giganode.io";
       db.conn_string =
         "dbname=agora user=agora";
       discourse = {
@@ -31,13 +25,12 @@ in {
         contract_start = "2020-01-01";
       };
       discourse = {
-        category = "Proposals Submitted";
+        proposal_category = "Proposals Submitted";
+        implementation_category = "Implementation Progress";
         host = "https://forum.stakerdao.com";
       };
     };
   };
-
-  networking.domain = "stakerdao.serokell.team";
 
   services.nginx.enable = true;
   services.nginx.virtualHosts.agora = {
@@ -45,10 +38,5 @@ in {
     serverName = dns_name;
     forceSSL = true;
     enableACME = true;
-  };
-
-  security.acme = {
-    email = "operations@serokell.io";
-    acceptTerms = true;
   };
 }

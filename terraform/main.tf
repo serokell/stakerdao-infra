@@ -98,6 +98,39 @@ resource "aws_instance" "stakerdao_production" {
   }
 }
 
+## Blend demo
+resource "aws_instance" "blend_demo" {
+  key_name = aws_key_pair.balsoft.key_name
+
+  # Networking
+  subnet_id = module.vpc.public_subnets[0]
+  associate_public_ip_address = true
+  ipv6_address_count = 1
+  vpc_security_group_ids = [
+    aws_security_group.egress_all.id,
+    aws_security_group.http.id,
+    aws_security_group.prometheus_exporter_node.id,
+    aws_security_group.ssh.id,
+  ]
+
+  # Instance parameters
+  instance_type = "t3a.nano"
+  monitoring = true
+
+  # Disk type, size, and contents
+  ami = data.aws_ami.nixos.id
+
+  lifecycle {
+    ignore_changes = [ ami, user_data ]
+  }
+
+  ebs_optimized = true
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = "20"
+  }
+}
+
 # Allow ALL egress traffic
 resource "aws_security_group" "egress_all" {
   name = "egress_all"
@@ -202,6 +235,11 @@ resource "aws_key_pair" "mkaito" {
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDOySJ7SAmh+3CBK4fagwkY9PsF6xF+9msMRoQN6JalpauQANALVsVDjC3heFH6Lc/tjLrhQ46oVO3xMFGVKxNe81gaWhvWPxytfH5V8FP52GWEo5HwwMd+VoEyJIYYbj10jwkuzutr9fF0qlp0nhR1IaTKnxJFxV8tUkpiC3a9Qf4yrNy7Ft6DMwyiZSh/mEx+S4LuMqayb93do7+ddlSAyb70NQrLv7H2IRA+qkAzPhZe80o3FqKRvXayH5GSSuYLFfEPFgy0guKAA7P2ICjddLJ+l8BAdTlF8ADY1Z97DvCAgG6CT4cnRzv+cSM+Uvd+ZTxBY6Z+U27kO2LB7UBhVLzrWHSRbv5KWaruFzhOD3E64y3+7XzUg0DpoeS2QVahYc3iF4FvpVfLLPX3F4aev/83Z05G6nEn8lDb1XPAV0KRwo0gB4cCknC6MurnIzxgAeElin9DL5KgVMgVr5jIgBhx01Z9VEVNs5UcMDrA2mXHenY0uAnNk+iWeKZdzxxet50gQuebJ5Q3jHCADS6WZZsBdjxTDiLNvBVo1OiaZ4/tubzVZdrmCkPZDyPUO04Gz7rqXdVFiqzCJgVbcv2gX1qe8UthlRmdblX+l2fY4gvAOGNchVG1cMmvuA5i27td0PqDh6I7kQPvqKQ3QkCI012hwW9ca5S3HGtQDgqSZQ== cardno:000607309598"
 }
 
+resource "aws_key_pair" "balsoft" {
+  key_name = "balsoft"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDd2OdcSHUsgezuV+cpFqk9+Svtup6PxIolv1zokVZdqvS8qxLsA/rwYmQgTnuq4/zK/GIxcUCH4OxYlW6Or4M4G7qrDKcLAUrRPWkectqEooWRflZXkfHduMJhzeOAsBdMfYZQ9024GwKr/4yriw2BGa8GbbAnQxiSeTipzvXHoXuRME+/2GsMFAfHFvxzXRG7dNOiLtLaXEjUPUTcw/fffKy55kHtWxMkEvvcdyR53/24fmO3kLVpEuoI+Mp1XFtX3DvRM9ulgfwZUn8/CLhwSLwWX4Xf9iuzVi5vJOJtMOktQj/MwGk4tY/NPe+sIk+nAUKSdVf0y9k9JrJT98S/ cardno:000610645773"
+}
+
 ## DNS
 resource "aws_route53_zone" "stakerdao_serokell_team" {
   name = "stakerdao.serokell.team"
@@ -243,6 +281,23 @@ resource "aws_route53_record" "stakerdao_production_ipv6" {
   type    = "AAAA"
   ttl     = "60"
   records = [aws_instance.stakerdao_production.ipv6_addresses[0]]
+}
+
+## Blend Demo
+resource "aws_route53_record" "blend_demo_ipv4" {
+  zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
+  name    = "blend.stakerdao.serokell.team"
+  type    = "A"
+  ttl     = "60"
+  records = [aws_instance.blend_demo.public_ip]
+}
+
+resource "aws_route53_record" "blend_demo_ipv6" {
+  zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
+  name    = "blend.stakerdao.serokell.team"
+  type    = "AAAA"
+  ttl     = "60"
+  records = [aws_instance.blend_demo.ipv6_addresses[0]]
 }
 
 ## Bucket for TF state storage
@@ -288,3 +343,8 @@ output "stakerdao_production_id" {value = aws_instance.stakerdao_production.id}
 output "stakerdao_production_az" {value = aws_instance.stakerdao_production.availability_zone}
 output "stakerdao_production_ipv4" {value = aws_instance.stakerdao_production.public_ip}
 output "stakerdao_production_ipv6" {value = aws_instance.stakerdao_production.ipv6_addresses[0]}
+
+output "blend_demo_id" {value = aws_instance.blend_demo.id}
+output "blend_demo_az" {value = aws_instance.blend_demo.availability_zone}
+output "blend_demo_ipv4" {value = aws_instance.blend_demo.public_ip}
+output "blend_demo_ipv6" {value = aws_instance.blend_demo.ipv6_addresses[0]}
