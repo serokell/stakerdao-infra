@@ -6,3 +6,4 @@ err/
 *.key
 *.yaml
 /agora
+result*
