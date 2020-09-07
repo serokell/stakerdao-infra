@@ -9,55 +9,7 @@ let
       openssh.authorizedKeys.keys = keys;
   };
 
-  service-activate = pkgs.writeShellScriptBin "service-activate" ''
-    set -euo pipefail
-
-    if [[ -z ''${1:-} ]]; then
-      echo "Missing argument: service profile name."
-      exit 1
-    fi
-
-    if [[ -z ''${2:-} ]]; then
-      echo "Missing argument: full path to valid service closure."
-      exit 1
-    fi
-
-    if [[ ! -d ''${2:-} ]]; then
-      echo "''${1:-} is not a folder or does not exist."
-      exit 1
-    fi
-
-    echo 'Activating service closure...'
-    nix-env --profile "$1" --set "$2"
-    systemctl restart "$(basename "$1")"
-  '';
-
-  system-activate = pkgs.writeShellScriptBin "system-activate" ''
-    set -euo pipefail
-
-    if [[ -z ''${1:-} ]]; then
-      echo "Missing argument: full path to valid system closure."
-      exit 1
-    fi
-
-    if [[ ! -d ''${1:-} ]]; then
-      echo "''${1:-} is not a folder or does not exist."
-      exit 1
-    fi
-
-    if [[ ! -x ''${1:-}/bin/switch-to-configuration ]]; then
-      echo "''${1:-} is not a valid system closure: `bin/switch-to-configuration` not found or not executable."
-      exit 1
-    fi
-
-    echo 'Activating system closure...'
-    "$1/bin/switch-to-configuration" switch
-  '';
 in {
-
-  imports = [
-    ../modules
-  ];
 
   networking.domain = "stakerdao.serokell.team";
 
@@ -84,8 +36,6 @@ in {
 
   environment.systemPackages = with pkgs; [
     awscli
-    service-activate
-    system-activate
   ];
 
   # https://github.com/NixOS/nix/issues/1964
@@ -108,18 +58,6 @@ in {
 
   users.mutableUsers = false;
   users.users = lib.mapAttrs expandUser (import ./ssh-keys.nix);
-
-  security.sudo.extraRules = [
-    {
-      users = [ "buildkite" ];
-      commands = [
-        { command = "/run/current-system/sw/bin/system-activate *";
-        options = [ "NOPASSWD" ]; }
-        { command = "/run/current-system/sw/bin/service-activate *";
-        options = [ "NOPASSWD" ]; }
-      ];
-    }
-  ];
 
   services.nginx = {
     # SDAO-191

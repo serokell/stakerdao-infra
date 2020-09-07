@@ -1,0 +1,118 @@
+{
+  "nodes": {
+    "common-infra": {
+      "inputs": {
+        "deploy": "deploy",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1601045621,
+        "narHash": "sha256-UAEwXhlpmqQEUfyboT6+X9m9PIklxCtS70NxeXo/u2k=",
+        "owner": "serokell",
+        "repo": "common-infra",
+        "rev": "b40a1e89207a559eabaaabab768dd0d0f0793d46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "serokell",
+        "repo": "common-infra",
+        "type": "github"
+      }
+    },
+    "deploy": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1596739401,
+        "narHash": "sha256-ue1r95wl3xiVxfpxKOkK/J+rKXMHaGi1Qby1NHQ7Wgg=",
+        "owner": "serokell",
+        "repo": "deploy",
+        "rev": "6a00bb7630e7ec774859f05eecf7d8c54a2bb595",
+        "type": "github"
+      },
+      "original": {
+        "owner": "serokell",
+        "repo": "deploy",
+        "type": "github"
+      }
+    },
+    "gitignore-nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1591774229,
+        "narHash": "sha256-LXgvQm0kJZWnuk50j6iKgDMNvUxzbgdw4lyKT9k+Q08=",
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "rev": "647d0821b590ee96056f4593640534542d8700e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1592491430,
+        "narHash": "sha256-7WNpr16iUyjG4caad137nCqxXNTdct202jy05lslZXA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "07299ff81e58e16b282fe602ce5e629854dfd544",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1598385881,
+        "narHash": "sha256-kBvSrVo9NrWlQEvMtjEx/TCEDQTAG1M8pxhyxj0PSyU=",
+        "owner": "serokell",
+        "repo": "nixpkgs",
+        "rev": "66a26e65eb7f9b6cb3f773052da0cd3ac52f015c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "serokell",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "common-infra": "common-infra",
+        "nixpkgs": "nixpkgs_2",
+        "serokell-nix": "serokell-nix"
+      }
+    },
+    "serokell-nix": {
+      "inputs": {
+        "gitignore-nix": "gitignore-nix",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1597092323,
+        "narHash": "sha256-bHeVJL5aXpF8WJbv0/8iFy+MgmtznVLudk6LO8RFvN8=",
+        "owner": "serokell",
+        "repo": "serokell.nix",
+        "rev": "4cb5eff271d2b42dfb969f599629e6f1b538ed47",
+        "type": "github"
+      },
+      "original": {
+        "owner": "serokell",
+        "repo": "serokell.nix",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

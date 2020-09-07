@@ -1,26 +1,24 @@
 {
-  staging = {
-    imports = [
-      ./agora.nix
-    ];
+  agora = {
+    staging = {
+      imports = [ ./agora.nix ];
 
-    networking.hostName = "agora-staging";
+      networking.hostName = "agora-staging";
+    };
+
+    production = {
+      imports = [ ./agora.nix ];
+
+      networking.hostName = "agora";
+      services.agora.frontend.fqdn = "governance.stakerdao.com";
+    };
   };
 
-  production = let
-    cname = "governance.stakerdao.com";
-  in {
-    imports = [
-      ./agora.nix
-    ];
+  blend = {
+    demo = {
+      imports = [ ./blend-tender.nix ];
 
-    networking.hostName = "agora";
-    services.nginx.virtualHosts.agora.serverAliases = [ cname ];
-  };
-
-  blend_demo = {
-    imports = [ ./blend-tender.nix ];
-
-    networking.hostName = "blend";
+      networking.hostName = "blend";
+    };
   };
 }
