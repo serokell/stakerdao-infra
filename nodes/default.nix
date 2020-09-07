@@ -1,5 +1,5 @@
 {
-  staging = {
+  agora-staging = {
     imports = [
       ./agora.nix
     ];
@@ -7,7 +7,7 @@
     networking.hostName = "agora-staging";
   };
 
-  production = let
+  agora-production = let
     cname = "governance.stakerdao.com";
   in {
     imports = [
@@ -18,7 +18,7 @@
     services.nginx.virtualHosts.agora.serverAliases = [ cname ];
   };
 
-  blend_demo = {
+  blend-demo = {
     imports = [ ./blend-tender.nix ];
 
     networking.hostName = "blend";

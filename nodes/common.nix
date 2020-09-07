@@ -55,10 +55,6 @@ let
   '';
 in {
 
-  imports = [
-    ../modules
-  ];
-
   networking.domain = "stakerdao.serokell.team";
 
   vault-secrets = {
