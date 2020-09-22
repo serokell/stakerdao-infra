@@ -116,24 +116,57 @@ in {
           default = 5000;
           description = "Timeout for all SMTP operations (in milliseconds)";
         };
+        mock_send = mkOption {
+          type = types.bool;
+          default = false;
+          description = "Succeed sending all emails without actually sending them";
+        };
       };
       eth = {
         provider = mkOption {
           type = types.str;
           default = "<unset>";
         };
-        blnd_address = mkOption {
-          type = types.str;
-          default = "0x69c19c0DfBA389a2889d7eFfC0DE6Df91deE35E1";
+        contract_addrs = {
+          blnd = mkOption {
+            type = types.str;
+            default = "0x69c19c0DfBA389a2889d7eFfC0DE6Df91deE35E1";
+          };
+          orchestrator = mkOption {
+            type = types.str;
+            default = "0x7E48E377BD992E8D13CC8ce8ffCA0E1D5ee3F7F8";
+          };
+          registry = mkOption {
+            type = types.str;
+            default = "0x6b6c66f2243e5e333e8349324F54A1c92d449e15";
+          };
         };
-        orchestrator_address = mkOption {
-          type = types.str;
-          default = "0x7E48E377BD992E8D13CC8ce8ffCA0E1D5ee3F7F8";
-        };
-        fetcher_timeout_sec = mkOption {
+        head_watcher_delay_sec = mkOption {
           type = types.int;
           default = 5;
-          description = "Timeout for EthFetcher (in seconds)";
+          description = "Timeout for HeadWatcher (in seconds)";
+        };
+        balance_sync_delay_sec = mkOption {
+          type = types.int;
+          default = 5;
+          description = "Timeout for BalanceSync (in seconds)";
+        };
+        tx_watcher_delay_sec = mkOption {
+          type = types.int;
+          default = 5;
+          description = "Timeout for TxWatcher (in seconds)";
+        };
+        safe_depth = mkOption {
+          type = types.int;
+          default = 3;
+        };
+        tender_address_transfer_topic = mkOption {
+          type = types.str;
+          default = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef";
+        };
+        external_addr_size_bytes = mkOption {
+          type = types.int;
+          default = 20;
         };
       };
       buyback_batches = {
