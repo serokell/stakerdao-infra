@@ -59,6 +59,17 @@ in {
           type = types.ints.positive;
           default = 200;
         };
+        migrations =
+        {
+           verbose = mkOption {
+             type = types.bool;
+             default = true;
+           };
+           dir = mkOption {
+             type = types.path;
+             default = "${profile}/share/migrations";
+           };
+        };
       };
 
       smtp = {
