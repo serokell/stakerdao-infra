@@ -11,7 +11,7 @@ in {
     enable = true;
     config = {
       api.listen_addr = "*:8190";
-      node_addr = "mainnet.tezos.serokell.team:8732";
+      node_addr = "https://mainnet-tezos.giganode.io";
       db.conn_string =
         "dbname=agora user=agora";
       discourse = {

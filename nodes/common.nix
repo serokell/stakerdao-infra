@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  wheel = [ "chris" "kirelagin" "yorick" "balsoft" "sashasashasasha151" "zhenya" "gpevnev" ];
+  wheel = [ "chris" "kirelagin" "balsoft" "sashasashasasha151" "zhenya" "gpevnev" ];
   expandUser = _name: keys: {
     extraGroups =
       (lib.optionals (builtins.elem _name wheel) [ "wheel" ])
@@ -121,6 +121,13 @@ in {
     }
   ];
 
+  services.nginx = {
+    # SDAO-191
+    eventsConfig = ''
+      worker_connections 2048;
+    '';
+    logError = "stderr info";
+  };
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
