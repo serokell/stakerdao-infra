@@ -17,6 +17,8 @@ in {
       export $(cut -d= -f1 "$secretsPath/environment")
 
       cat <<EOF >| "$secretsPath/secrets.yml"
+      contract:
+        address: "$CONTRACT_ADDRESS"
       discourse:
         api_username: $DISCOURSE_USERNAME
         api_key: $DISCOURSE_TOKEN
@@ -50,7 +52,15 @@ in {
       enable = true;
       package = "${profiles}/backend";
       secrets = config.vault-secrets.secrets.${service};
-      config.db.conn_string = "host=/run/postgresql dbname=${dbname}";
+      config = {
+        discourse.host = "https://forum.stakerdao.com";
+        db.conn_string = "host=/run/postgresql dbname=${dbname}";
+        node_addr = "https://mainnet-tezos.giganode.io";
+        discourse = {
+          implementation_category = "Implementation Progress";
+          proposal_category = "Proposals Submitted";
+        };
+      };
     };
   };
 }
