@@ -17,6 +17,8 @@ in {
       export $(cut -d= -f1 "$secretsPath/environment")
 
       cat <<EOF >| "$secretsPath/secrets.yml"
+      api:
+        jwt_secret_key: "$API_JWT_SECRET_KEY"
       smtp:
         host: "$SMTP_HOST"
         logging: "$SMTP_LOGIN"
