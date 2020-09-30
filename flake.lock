@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1601297432,
-        "narHash": "sha256-LTtVF+Y3UCxYdjcINQQJHZondlMZw+Cf1UsMcg4K8Zs=",
+        "lastModified": 1601497347,
+        "narHash": "sha256-32UNMeYvJQZ4QTHdMFD+UwSa7IHi0g2LWINtDFfoVb4=",
         "owner": "serokell",
         "repo": "common-infra",
-        "rev": "911f5d1ceab477dfdaa747ea1f3e81035bd69bde",
+        "rev": "a600553f6cb4834b42bd82b137ddf610469f914d",
         "type": "github"
       },
       "original": {

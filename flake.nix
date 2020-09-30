@@ -19,7 +19,7 @@
       };
     in {
       mkDeploy = name:
-        { nixosModules, packages, ... }: {
+        { nixosModules, profiles, ... }: {
           nodes = builtins.mapAttrs (_: config:
             common-infra.mkNode {
               deployKey =
@@ -29,17 +29,16 @@
                 serokell-nix.nixosModules.vault-secrets
                 "${nixpkgs}/nixos/modules/virtualisation/amazon-image.nix"
               ] ++ (builtins.attrValues nixosModules);
-              packages = packages.x86_64-linux;
+              packages = profiles.x86_64-linux;
             }) (import ./nodes).${name};
-          sshOpts = "-o UserKnownHostsFile=${hosts}";
+          sshOpts = [ "-o UserKnownHostsFile=${hosts}" ];
         };
-      mkPipelineFile = { deploy, packages ? { }, checks ? { }, ... }:
+      mkPipelineFile = { deploy, packages ? { }, profiles ? { }, checks ? { }, ... }:
         common-infra.mkPipelineFile {
-          deployAttr = deploy;
-          inherit checks;
+          inherit deploy packages checks;
           deployFromPipeline = builtins.concatMap (branch:
             map (profile: { inherit branch profile; })
-            (builtins.attrNames packages.x86_64-linux))
+            (builtins.attrNames profiles.x86_64-linux))
             (builtins.attrNames deploy.nodes);
           agents = [ "private=true" ];
         };
