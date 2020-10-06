@@ -1,9 +1,11 @@
 {
   inputs = {
     nixpkgs.url = "github:serokell/nixpkgs";
+    deploy.url = "github:notgne2/deploy-rs";
     common-infra = {
       url = "github:serokell/common-infra";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.deploy.follows = "deploy";
     };
     serokell-nix = {
       url = "github:serokell/serokell.nix";
@@ -11,7 +13,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, common-infra, serokell-nix }@inputs:
+  outputs = { self, nixpkgs, common-infra, serokell-nix, ... }@inputs:
     let
       hosts = builtins.path {
         name = "hosts";

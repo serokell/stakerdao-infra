@@ -2,17 +2,19 @@
   "nodes": {
     "common-infra": {
       "inputs": {
-        "deploy": "deploy",
+        "deploy": [
+          "deploy"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1601550544,
-        "narHash": "sha256-dTQX0v8aNpEJTMMSrA3Xcr3Jo6uKRP39I6bZmdNlX1Y=",
+        "lastModified": 1602009650,
+        "narHash": "sha256-eerzZM8WOTgfGoAMjV+RhuzdbPH0l68WjCNJ5HN2wsw=",
         "owner": "serokell",
         "repo": "common-infra",
-        "rev": "3b863660558b08f769523cc660fd28e05224a057",
+        "rev": "d44d88c2ecdd0cb92035d14dcba6c16c8e4a4d17",
         "type": "github"
       },
       "original": {
@@ -23,19 +25,21 @@
     },
     "deploy": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "naersk": "naersk",
+        "nixpkgs": "nixpkgs_2",
+        "utils": "utils"
       },
       "locked": {
-        "lastModified": 1596739401,
-        "narHash": "sha256-ue1r95wl3xiVxfpxKOkK/J+rKXMHaGi1Qby1NHQ7Wgg=",
-        "owner": "serokell",
-        "repo": "deploy",
-        "rev": "6a00bb7630e7ec774859f05eecf7d8c54a2bb595",
+        "lastModified": 1602007720,
+        "narHash": "sha256-cSoTUekeXuAsTI3Rv9dQzNyMIIiD5GfWtxJgooJW7F0=",
+        "owner": "notgne2",
+        "repo": "deploy-rs",
+        "rev": "3a92593bf9c4ca07a2b09888e4a3f7dff6c9c510",
         "type": "github"
       },
       "original": {
-        "owner": "serokell",
-        "repo": "deploy",
+        "owner": "notgne2",
+        "repo": "deploy-rs",
         "type": "github"
       }
     },
@@ -55,13 +59,32 @@
         "type": "github"
       }
     },
+    "naersk": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1597138680,
+        "narHash": "sha256-3pDN/W17wjVDbrkgo60xQSb24+QAPQ7ulsUq5atNni0=",
+        "owner": "nmattia",
+        "repo": "naersk",
+        "rev": "529e910a3f423a8211f8739290014b754b2555b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nmattia",
+        "ref": "master",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1592491430,
-        "narHash": "sha256-7WNpr16iUyjG4caad137nCqxXNTdct202jy05lslZXA=",
+        "lastModified": 1601091160,
+        "narHash": "sha256-26UI9LGjRO8Sv253zJZkoapP260QkJPQ2+vRyC1i+kI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "07299ff81e58e16b282fe602ce5e629854dfd544",
+        "rev": "2768436826543af2b1540e4fe6b5afa15850e155",
         "type": "github"
       },
       "original": {
@@ -70,6 +93,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1600387253,
+        "narHash": "sha256-WtdpHuiunPF9QMlcXrWJkESuIjSSjP9WMOKvYQS/D7M=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "72b9660dc18ba347f7cd41a9504fc181a6d87dc3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1598385881,
         "narHash": "sha256-kBvSrVo9NrWlQEvMtjEx/TCEDQTAG1M8pxhyxj0PSyU=",
@@ -87,7 +126,8 @@
     "root": {
       "inputs": {
         "common-infra": "common-infra",
-        "nixpkgs": "nixpkgs_2",
+        "deploy": "deploy",
+        "nixpkgs": "nixpkgs_3",
         "serokell-nix": "serokell-nix"
       }
     },
@@ -109,6 +149,21 @@
       "original": {
         "owner": "serokell",
         "repo": "serokell.nix",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1600209923,
+        "narHash": "sha256-zoOWauTliFEjI++esk6Jzk7QO5EKpddWXQm9yQK24iM=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3cd06d3c1df6879c9e41cb2c33113df10566c760",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     }
