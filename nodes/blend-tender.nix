@@ -26,11 +26,6 @@ in {
         sender: "$SMTP_SENDER"
       eth:
         provider: "$ETH_PROVIDER"
-        tender_address_transfer_topic: "$ETH_TENDER_ADDRESS"
-        contract_addrs:
-          blnd: "$ETH_BLND_ADDRESS"
-          orchestrator: "$ETH_ORCHESTRATOR_ADDRESS"
-          registry: "$ETH_REGISTRY_ADDRESS"
       EOF
     '';
   };
