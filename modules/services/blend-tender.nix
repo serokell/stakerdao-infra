@@ -130,15 +130,15 @@ in {
         contract_addrs = {
           blnd = mkOption {
             type = types.str;
-            default = "0x69c19c0DfBA389a2889d7eFfC0DE6Df91deE35E1";
+            default = "0x8B7f9Ce66552eD400C4F7385b6B715F6ec641c99";
           };
           orchestrator = mkOption {
             type = types.str;
-            default = "0x7E48E377BD992E8D13CC8ce8ffCA0E1D5ee3F7F8";
+            default = "0xf5a9662Ea4241A5A08Eb8c2091a602741365F608";
           };
           registry = mkOption {
             type = types.str;
-            default = "0x6b6c66f2243e5e333e8349324F54A1c92d449e15";
+            default = "0xD9632349D85334A1dF2f515d740152Baf6f3ABc7";
           };
         };
         head_watcher_delay_sec = mkOption {
