@@ -141,6 +141,11 @@ in {
             default = "0xD9632349D85334A1dF2f515d740152Baf6f3ABc7";
           };
         };
+        usdc_precision = mkOption {
+          type = types.int;
+          default = 6;
+          description = "Precision of USDC contract";
+        };
         head_watcher_delay_sec = mkOption {
           type = types.int;
           default = 5;
