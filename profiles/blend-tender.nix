@@ -17,6 +17,17 @@ in {
     ];
   };
 
+
+  security.sudo.extraRules = [{
+    users = [ "deploy" ];
+    commands = [
+      {
+        command = "/run/current-system/sw/bin/systemctl restart blend-tender";
+        options = [ "NOPASSWD" ];
+      }
+    ];
+  }];
+
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   vault-secrets.secrets.${service} = {

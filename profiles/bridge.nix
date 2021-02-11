@@ -18,6 +18,16 @@ in {
   };
 
 
+  security.sudo.extraRules = [{
+    users = [ "deploy" ];
+    commands = [
+      {
+        command = "/run/current-system/sw/bin/systemctl restart bridge";
+        options = [ "NOPASSWD" ];
+      }
+    ];
+  }];
+
   vault-secrets.secrets.${service} = {
     inherit user;
   };
