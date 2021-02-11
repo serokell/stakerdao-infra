@@ -11,11 +11,11 @@
         "stackage": "stackage"
       },
       "locked": {
-        "lastModified": 1612793509,
-        "narHash": "sha256-w/nn4mpBhZaLhkaL0qiTq0XtQUG72PjaWOWTVcngNcM=",
+        "lastModified": 1612965710,
+        "narHash": "sha256-CVn8twgwNbOzgIf/KU3ObCSX3V7+I0/iOx1g0xVxzEo=",
         "ref": "balsoft/refactor",
-        "rev": "66c9ad521b2ba44fac566baea67a69c128e60faa",
-        "revCount": 434,
+        "rev": "39c05d16ded999962a1e4a7d529e501f79bbcb03",
+        "revCount": 435,
         "type": "git",
         "url": "ssh://git@github.com/stakerdao/blend-app"
       },
@@ -36,11 +36,11 @@
         "stackage": "stackage_2"
       },
       "locked": {
-        "lastModified": 1612804233,
-        "narHash": "sha256-xZ/zkDuxICGdRhg+N3CvKcBg6bP+bVXBxAc+ZtS9nLs=",
+        "lastModified": 1612965684,
+        "narHash": "sha256-pDEgNpjFZgvEfbJdMp67+cZOvDRBR9+emKo3K12El5g=",
         "ref": "balsoft/refactor",
-        "rev": "f4a664695e61af38002146ad5e414185f78e1685",
-        "revCount": 206,
+        "rev": "f352046216b0541d61680e9eb5a8e431a37ea0f1",
+        "revCount": 207,
         "type": "git",
         "url": "ssh://git@github.com/stakerdao/bridge-web"
       },
@@ -180,11 +180,11 @@
         "utils": "utils_5"
       },
       "locked": {
-        "lastModified": 1611664110,
-        "narHash": "sha256-O12Fc/TcmcmCP6nIPns464aWBqa2rBOCpOgw6e69QiE=",
+        "lastModified": 1612864896,
+        "narHash": "sha256-pbsvxe05kAWJzPeC6fs4t0Mk8mTZs6u/WQDMBqoA5tA=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "c00e29a39df47c8cdba8c4bb43868a27f32df3b8",
+        "rev": "fecc7e723db40c7e056371467275186b3bbb9ef3",
         "type": "github"
       },
       "original": {
@@ -900,11 +900,11 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1598385881,
-        "narHash": "sha256-kBvSrVo9NrWlQEvMtjEx/TCEDQTAG1M8pxhyxj0PSyU=",
+        "lastModified": 1612858101,
+        "narHash": "sha256-XJ8WVB+z3LxUTdan8K+kiL/Frhdu9JoUeLnBm7zYmmQ=",
         "owner": "serokell",
         "repo": "nixpkgs",
-        "rev": "66a26e65eb7f9b6cb3f773052da0cd3ac52f015c",
+        "rev": "11db098dcba5846805c42d7429854cd0af58645a",
         "type": "github"
       },
       "original": {
@@ -946,11 +946,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1598385881,
-        "narHash": "sha256-kBvSrVo9NrWlQEvMtjEx/TCEDQTAG1M8pxhyxj0PSyU=",
+        "lastModified": 1612858101,
+        "narHash": "sha256-XJ8WVB+z3LxUTdan8K+kiL/Frhdu9JoUeLnBm7zYmmQ=",
         "owner": "serokell",
         "repo": "nixpkgs",
-        "rev": "66a26e65eb7f9b6cb3f773052da0cd3ac52f015c",
+        "rev": "11db098dcba5846805c42d7429854cd0af58645a",
         "type": "github"
       },
       "original": {
@@ -991,11 +991,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1601640588,
-        "narHash": "sha256-EKCgoeOA5i3DQQx2lfyzvjwCiklnSCXsnHzh9gg1AD4=",
+        "lastModified": 1612858101,
+        "narHash": "sha256-XJ8WVB+z3LxUTdan8K+kiL/Frhdu9JoUeLnBm7zYmmQ=",
         "owner": "serokell",
         "repo": "nixpkgs",
-        "rev": "1e22f7603d223a67e7cd219939e1c1042419ff24",
+        "rev": "11db098dcba5846805c42d7429854cd0af58645a",
         "type": "github"
       },
       "original": {
@@ -1069,11 +1069,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1611916167,
-        "narHash": "sha256-DPsoW9pV80CxvWqKVnEsCWoKGZUlQVICHcidlRw0oyg=",
+        "lastModified": 1612974576,
+        "narHash": "sha256-BaQqxw11+m2pxO+MhqZ85Lhe/FDVJg8qcCgjonXhkwM=",
         "owner": "serokell",
         "repo": "serokell.nix",
-        "rev": "8c9e2a1ee042936fee3aaab76fe17045c96dc123",
+        "rev": "7352c12290c199b97ec5e9b339c9d43cd49289e6",
         "type": "github"
       },
       "original": {
@@ -1167,11 +1167,11 @@
         "stackage": "stackage_3"
       },
       "locked": {
-        "lastModified": 1612793545,
-        "narHash": "sha256-ZWbGCtvJeTAcK5p8H0CGMAJUTr/r1vrsnaKUQI7A3pw=",
+        "lastModified": 1613034510,
+        "narHash": "sha256-g8jWabuK1ukED5c2AXjI/c2Q5nLGIrJo/TUltumfNyY=",
         "ref": "balsoft/flakes-7",
-        "rev": "56ed7dd6b09f009aee2997917618fe138ad3a627",
-        "revCount": 832,
+        "rev": "a4e46399ffa584b2246f53fe91d6884a40d8ee7a",
+        "revCount": 834,
         "type": "git",
         "url": "ssh://git@github.com/serokell/stakerdao-agora"
       },
