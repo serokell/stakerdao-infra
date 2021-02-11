@@ -4,19 +4,13 @@
   inputs = {
     nixpkgs.url = "github:serokell/nixpkgs";
     stakerdao-agora = {
-      type = "git";
-      url = "ssh://git@github.com/serokell/stakerdao-agora";
-      ref = "balsoft/flakes-7";
+      url = "git+ssh://git@github.com/serokell/stakerdao-agora";
     };
     blend-app = {
-      type = "git";
-      url = "ssh://git@github.com/stakerdao/blend-app";
-      ref = "balsoft/refactor";
+      url = "git+ssh://git@github.com/stakerdao/blend-app";
     };
     bridge-web = {
-      type = "git";
-      url = "ssh://git@github.com/stakerdao/bridge-web";
-      ref = "balsoft/refactor";
+      url = "git+ssh://git@github.com/stakerdao/bridge-web";
     };
     deploy-rs.url = "github:serokell/deploy-rs";
     serokell-nix.url = "github:serokell/serokell.nix";
