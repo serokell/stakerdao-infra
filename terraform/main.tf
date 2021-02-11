@@ -10,7 +10,7 @@ terraform {
 }
 
 provider  "aws" {
-  version = "~> 2.15"
+  version = "~> 3.20"
   region = "eu-west-2"
   profile = "stakerdao"
 }
@@ -244,7 +244,8 @@ resource "aws_security_group" "http" {
 # Network resources
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "~> v2.0"
+
+  version = "= v2.69"
 
   name = "tezos-cluster-vpc"
   cidr = "10.0.0.0/16"
