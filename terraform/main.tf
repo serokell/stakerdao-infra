@@ -10,7 +10,7 @@ terraform {
 }
 
 provider  "aws" {
-  version = "~> 2.15"
+  version = "~> 3.20"
   region = "eu-west-2"
   profile = "stakerdao"
 }
@@ -131,6 +131,40 @@ resource "aws_instance" "blend_demo" {
   }
 }
 
+## Blend demo
+resource "aws_instance" "bridge_testing" {
+  key_name = aws_key_pair.balsoft.key_name
+
+  # Networking
+  subnet_id = module.vpc.public_subnets[0]
+  associate_public_ip_address = true
+  ipv6_address_count = 1
+  vpc_security_group_ids = [
+    aws_security_group.egress_all.id,
+    aws_security_group.http.id,
+    aws_security_group.prometheus_exporter_node.id,
+    aws_security_group.ssh.id,
+  ]
+
+  # Instance parameters
+  instance_type = "t3a.nano"
+  monitoring = true
+
+  # Disk type, size, and contents
+  ami = data.aws_ami.nixos.id
+
+  lifecycle {
+    ignore_changes = [ ami, user_data ]
+  }
+
+  ebs_optimized = true
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = "20"
+  }
+}
+
+
 # Allow ALL egress traffic
 resource "aws_security_group" "egress_all" {
   name = "egress_all"
@@ -174,6 +208,14 @@ resource "aws_security_group" "ssh" {
     cidr_blocks = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
+
+  ingress {
+    from_port = 17788
+    to_port = 17788
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
 }
 
 # Allow Frontend traffic
@@ -202,7 +244,8 @@ resource "aws_security_group" "http" {
 # Network resources
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "~> v2.0"
+
+  version = "= v2.69"
 
   name = "tezos-cluster-vpc"
   cidr = "10.0.0.0/16"
@@ -298,6 +341,23 @@ resource "aws_route53_record" "blend_demo_ipv6" {
   type    = "AAAA"
   ttl     = "60"
   records = [aws_instance.blend_demo.ipv6_addresses[0]]
+}
+
+## Bridge Testing
+resource "aws_route53_record" "bridge_testing_ipv4" {
+  zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
+  name    = "bridge.stakerdao.serokell.team"
+  type    = "A"
+  ttl     = "60"
+  records = [aws_instance.bridge_testing.public_ip]
+}
+
+resource "aws_route53_record" "bridge_testing_ipv6" {
+  zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
+  name    = "bridge.stakerdao.serokell.team"
+  type    = "AAAA"
+  ttl     = "60"
+  records = [aws_instance.bridge_testing.ipv6_addresses[0]]
 }
 
 ## Bucket for TF state storage

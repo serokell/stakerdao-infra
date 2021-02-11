@@ -1,31 +1,10 @@
 steps:
-  - label: nix build
-    command: nix-build
-    agents:
-      private: true
-
-  - wait
-
-  - label: deploy staging
-    command: scripts/deploy.sh staging system
-    branches:
-      - staging
-    agents:
-      private: true
-
-  - label: deploy production
-    command: scripts/deploy.sh production system
-    branches:
-      - production
-    agents:
-      private: true
-
-  - label: deploy blnd demo
-    commands:
-      - nix-build -A deploy
-      - cd scripts
-      - ../result/bin/deploy --repo "ssh://git@github.com/stakerdao/blend-app" --ref "${REF-demo}" Blend_Demo System
-    branches:
-      - blnd-demo
-    agents:
-      private: true
+- label: build systems
+  commands:
+  - nix-build -A nixosSystems
+- label: terraform validate
+  commands:
+  - nix-shell --run "terraform init -backend=false terraform && terraform validate terraform"
+- label: Check flake
+  commands:
+  - nix-build -A checks.x86_64-linux
