@@ -4,7 +4,8 @@
     inputs.serokell-nix.nixosModules.common
     inputs.serokell-nix.nixosModules.serokell-users
     inputs.serokell-nix.nixosModules.vault-secrets
-    "${inputs.nixpkgs}/nixos/modules/virtualisation/amazon-image.nix"
+
+    inputs.serokell-nix.nixosModules.ec2
   ];
 
   networking.domain = "stakerdao.serokell.team";
@@ -29,6 +30,4 @@
 
   serokell-users.wheelUsers =
     [ "gpevnev" "georgeee" "sashasashasasha151" ];
-
-  systemd.services.amazon-init.enable = false;
 }
