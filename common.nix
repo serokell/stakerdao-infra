@@ -3,7 +3,7 @@
   imports = [
     inputs.serokell-nix.nixosModules.common
     inputs.serokell-nix.nixosModules.serokell-users
-    inputs.serokell-nix.nixosModules.vault-secrets
+    inputs.vault-secrets.nixosModules.vault-secrets
 
     inputs.serokell-nix.nixosModules.ec2
   ];
@@ -12,8 +12,7 @@
 
   vault-secrets = {
     vaultAddress = "https://vault.serokell.org:8200";
-    vaultPathPrefix = "kv/sys/stakerdao";
-    namespace = config.networking.hostName;
+    vaultPrefix = "kv/sys/stakerdao/${config.networking.hostName}";
     approlePrefix = "stakerdao-${config.networking.hostName}";
   };
 
