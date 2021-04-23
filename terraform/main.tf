@@ -43,8 +43,8 @@ resource "aws_instance" "blend_demo" {
   vpc_security_group_ids = [
     aws_security_group.egress_all.id,
     aws_security_group.http.id,
-    aws_security_group.prometheus_exporter_node.id,
     aws_security_group.ssh.id,
+    aws_security_group.wireguard.id,
   ]
 
   # Instance parameters
@@ -76,8 +76,8 @@ resource "aws_instance" "bridge_testing" {
   vpc_security_group_ids = [
     aws_security_group.egress_all.id,
     aws_security_group.http.id,
-    aws_security_group.prometheus_exporter_node.id,
     aws_security_group.ssh.id,
+    aws_security_group.wireguard.id,
   ]
 
   # Instance parameters
@@ -109,21 +109,6 @@ resource "aws_security_group" "egress_all" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-}
-
-# Allow traffic for the tezos node
-resource "aws_security_group" "prometheus_exporter_node" {
-  name = "prometheus_exporter_node"
-  description = "Allow Prometheus Node Exporter data scraping"
-  vpc_id = module.vpc.vpc_id
-
-  ingress {
-    from_port = 9100
-    to_port = 9100
-    protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
@@ -171,6 +156,21 @@ resource "aws_security_group" "http" {
     to_port = 443
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
+# Allow wireguard traffic
+resource "aws_security_group" "wireguard" {
+  name = "wireguard"
+  description = "Allow inbound and outbound traffic for wireguard"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port        = 51820
+    to_port          = 51820
+    protocol         = "udp"
+    cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
 }
