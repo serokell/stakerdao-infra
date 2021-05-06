@@ -3,6 +3,7 @@
   imports = [
     inputs.serokell-nix.nixosModules.common
     inputs.serokell-nix.nixosModules.serokell-users
+    inputs.serokell-nix.nixosModules.wireguard-monitoring
     inputs.vault-secrets.nixosModules.vault-secrets
 
     inputs.serokell-nix.nixosModules.ec2
@@ -15,9 +16,6 @@
     vaultPrefix = "kv/sys/stakerdao/${config.networking.hostName}";
     approlePrefix = "stakerdao-${config.networking.hostName}";
   };
-
-  networking.firewall.allowedTCPPorts =
-    [ config.services.prometheus.exporters.node.port ];
 
   services.nginx = {
     # SDAO-191
