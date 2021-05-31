@@ -63,19 +63,6 @@ needs nuking.
 Server configuration files live in the [./servers](./servers) folder. Things common
 to all servers are in [./common.nix](./common.nix)
 
-### Agora
-
-There are two agora servers in this configuration: staging and production.
-Profile for both of them is [./profiles/agora.nix](./profiles/agora.nix). The
-production server also defines one vault secret, the approle for which
-needs to be deployed manually (for now). Address for the Agora service
-matches FQDN, the address for TZIP browser is in the table below.
-
-| **Server**       | **FQDN**                  | **TZIP browser URL**     |
-|------------------|---------------------------|--------------------------|
-| agora-staging    | agora.tezos.serokell.team | tzip.tezos.serokell.team |
-| agora-production | www.tezosagora.org        | tzip.tezosagora.org      |
-
 ### Deploying or updating
 
 - Enter `nix-shell` or `nix develop`
