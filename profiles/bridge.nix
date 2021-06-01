@@ -52,7 +52,7 @@ in {
       secretFile = "${config.vault-secrets.secrets.${service}}/environment";
       serviceName = service;
       config = {
-        chains.tezos.custom.endpoint = "http://edo.testnet.tezos.serokell.team:8732";
+        chains.tezos.custom.endpoint = "http://florence.testnet.tezos.serokell.team:8732";
       };
       inherit user;
     };
