@@ -26,5 +26,5 @@
   };
 
   serokell-users.wheelUsers =
-    [ "gpevnev" "georgeee" "sashasashasasha151" ];
+    [ "gromak" "georgeee" "worm2fed" ];
 }
