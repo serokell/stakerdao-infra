@@ -39,7 +39,7 @@ in {
     ensureUsers = map (name: {
       inherit name;
       ensurePermissions = { "DATABASE \"${dbname}\"" = "ALL"; };
-    }) [ "gpevnev" "sashasashasasha151" "georgeee" ];
+    }) [ "gromak" "worm2fed" "georgeee" ];
   };
 
   services.bridge = {
