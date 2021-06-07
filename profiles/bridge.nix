@@ -42,6 +42,11 @@ in {
     }) [ "gromak" "worm2fed" "georgeee" ];
   };
 
+  systemd.services.bridge.serviceConfig = {
+    RuntimeMaxSec = 86400;
+    Restart = "always";
+  };
+
   services.bridge = {
     enable = true;
     frontend = {
