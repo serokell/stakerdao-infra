@@ -35,11 +35,11 @@
         "stackage": "stackage_2"
       },
       "locked": {
-        "lastModified": 1619546846,
-        "narHash": "sha256-LKNDJeycWS0QtLHgtQ53HJwfLqT6NlK7mnKxYpJOaJ8=",
-        "ref": "testing",
-        "rev": "f2123e68df86ee586fb64ef3b103958e8e278f5a",
-        "revCount": 385,
+        "lastModified": 1625690231,
+        "narHash": "sha256-vMJ9hVaj/q/egvcP4F4/fWe4hxNaVDzgEr7oWuYGm9I=",
+        "ref": "master",
+        "rev": "4a70dac34c88d78c07696deaa54c776cc30feb45",
+        "revCount": 515,
         "type": "git",
         "url": "ssh://git@github.com/stakerdao/bridge-web"
       },
@@ -75,11 +75,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1612203367,
-        "narHash": "sha256-z4knCUz+FJxqEgbT+EEFuzpAFWHmWBfAfTr3HuHMKE0=",
+        "lastModified": 1623937199,
+        "narHash": "sha256-QW6Fn4weL7JBJLmy0oE0EHyYA/8hbfEHnfHaMGmgIt8=",
         "owner": "serokell",
         "repo": "common-infra",
-        "rev": "c5b609969578f8f5ca56c7d439eb010fcbe17157",
+        "rev": "e85b6e0f8e31c47d1a4d1ad81aa07fff8db9d7cc",
         "type": "github"
       },
       "original": {
