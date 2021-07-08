@@ -35,11 +35,11 @@
         "stackage": "stackage_2"
       },
       "locked": {
-        "lastModified": 1625690231,
-        "narHash": "sha256-vMJ9hVaj/q/egvcP4F4/fWe4hxNaVDzgEr7oWuYGm9I=",
+        "lastModified": 1625760540,
+        "narHash": "sha256-4tuQpaktVStqt5eP1xfWR1rtbdv3O9kWU31/SrZQtBE=",
         "ref": "master",
-        "rev": "4a70dac34c88d78c07696deaa54c776cc30feb45",
-        "revCount": 515,
+        "rev": "49073bb7cdc1fcd4d7d867fe9df0e4c0d87169e5",
+        "revCount": 522,
         "type": "git",
         "url": "ssh://git@github.com/stakerdao/bridge-web"
       },
