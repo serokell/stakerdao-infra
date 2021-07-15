@@ -39,7 +39,7 @@ in {
     ensureUsers = map (name: {
       inherit name;
       ensurePermissions = { "DATABASE \"${dbname}\"" = "ALL"; };
-    }) [ "gromak" "worm2fed" "georgeee" ];
+    }) [ "gromak" ];
   };
 
   systemd.services.bridge.serviceConfig = {
@@ -57,7 +57,6 @@ in {
       secretFile = "${config.vault-secrets.secrets.${service}}/environment";
       serviceName = service;
       config = {
-        chains.tezos.custom.endpoint = "http://florence.testnet.tezos.serokell.team:8732";
       };
       inherit user;
     };
