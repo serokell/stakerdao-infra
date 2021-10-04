@@ -6,7 +6,6 @@
     stakerdao-agora = {
       url = "git+ssh://git@github.com/serokell/stakerdao-agora";
     };
-    blend-app = { url = "git+ssh://git@github.com/stakerdao/blend-app"; };
     bridge-web = { url = "git+ssh://git@github.com/stakerdao/bridge-web"; };
     deploy-rs.url = "github:serokell/deploy-rs";
     serokell-nix.url = "github:serokell/serokell.nix";

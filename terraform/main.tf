@@ -33,39 +33,6 @@ data "aws_ami" "nixos" {
 }
 
 ## Blend demo
-resource "aws_instance" "blend_demo" {
-  key_name = aws_key_pair.balsoft.key_name
-
-  # Networking
-  subnet_id = module.vpc.public_subnets[0]
-  associate_public_ip_address = true
-  ipv6_address_count = 1
-  vpc_security_group_ids = [
-    aws_security_group.egress_all.id,
-    aws_security_group.http.id,
-    aws_security_group.ssh.id,
-    aws_security_group.wireguard.id,
-  ]
-
-  # Instance parameters
-  instance_type = "t3a.nano"
-  monitoring = true
-
-  # Disk type, size, and contents
-  ami = data.aws_ami.nixos.id
-
-  lifecycle {
-    ignore_changes = [ ami, user_data ]
-  }
-
-  ebs_optimized = true
-  root_block_device {
-    volume_type = "gp2"
-    volume_size = "20"
-  }
-}
-
-## Blend demo
 resource "aws_instance" "bridge_testing" {
   key_name = aws_key_pair.balsoft.key_name
 
@@ -224,23 +191,6 @@ resource "aws_route53_zone" "stakerdao_serokell_team" {
 
 ### FIXME: Fix DNS records below when switching to new servers
 
-## Blend Demo
-resource "aws_route53_record" "blend_demo_ipv4" {
-  zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
-  name    = "blend.stakerdao.serokell.team"
-  type    = "A"
-  ttl     = "60"
-  records = [aws_instance.blend_demo.public_ip]
-}
-
-resource "aws_route53_record" "blend_demo_ipv6" {
-  zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
-  name    = "blend.stakerdao.serokell.team"
-  type    = "AAAA"
-  ttl     = "60"
-  records = [aws_instance.blend_demo.ipv6_addresses[0]]
-}
-
 ## Bridge Testing
 resource "aws_route53_record" "bridge_testing_ipv4" {
   zone_id = aws_route53_zone.stakerdao_serokell_team.zone_id
@@ -290,8 +240,3 @@ resource "aws_dynamodb_table" "tfstatelock" {
 
 ## Outputs for scripting
 output "stakerdao_ns" {value = [ aws_route53_zone.stakerdao_serokell_team.name_servers ]}
-
-output "blend_demo_id" {value = aws_instance.blend_demo.id}
-output "blend_demo_az" {value = aws_instance.blend_demo.availability_zone}
-output "blend_demo_ipv4" {value = aws_instance.blend_demo.public_ip}
-output "blend_demo_ipv6" {value = aws_instance.blend_demo.ipv6_addresses[0]}
