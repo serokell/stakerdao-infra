@@ -47,6 +47,8 @@ in {
     Restart = "always";
   };
 
+  services.nginx.addSecurityHeaders = false;
+
   services.bridge = {
     enable = true;
     frontend = {
