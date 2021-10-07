@@ -1,15 +1,13 @@
 {
   description = "NixOS systems for the stakerdao projects";
 
+  nixConfig = {
+    flake-registry = "https://github.com/serokell/flake-registry/raw/master/flake-registry.json";
+  };
+
   inputs = {
-    nixpkgs.url = "github:serokell/nixpkgs";
-    stakerdao-agora = {
-      url = "git+ssh://git@github.com/serokell/stakerdao-agora";
-    };
-    bridge-web = { url = "git+ssh://git@github.com/stakerdao/bridge-web"; };
-    deploy-rs.url = "github:serokell/deploy-rs";
-    serokell-nix.url = "github:serokell/serokell.nix";
-    vault-secrets.url = "github:serokell/vault-secrets";
+    stakerdao-agora.url = "git+ssh://git@github.com/serokell/stakerdao-agora";
+    bridge-web.url = "git+ssh://git@github.com/stakerdao/bridge-web";
   };
 
   outputs =
