@@ -26,5 +26,5 @@
   };
 
   serokell-users.wheelUsers =
-    [ "gromak" "sashasashasasha151" ];
+    [ "gromak" "sashasashasasha151" "martoon" ];
 }

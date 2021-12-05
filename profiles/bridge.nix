@@ -39,7 +39,7 @@ in {
     ensureUsers = map (name: {
       inherit name;
       ensurePermissions = { "DATABASE \"${dbname}\"" = "ALL"; };
-    }) [ "gromak" "sashasashasasha151" ];
+    }) [ "gromak" "sashasashasasha151" "martoon" ];
   };
 
   systemd.services.bridge.serviceConfig = {
