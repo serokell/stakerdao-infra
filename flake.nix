@@ -28,7 +28,7 @@
       deployChecks =
         mapAttrs (_: lib: lib.deployChecks self.deploy) deploy-rs.lib;
 
-      terraformFor = pkgs: pkgs.terraform.withPlugins (p: with p; [ aws ]);
+      terraformFor = pkgs: pkgs.terraform_0_13.withPlugins (p: with p; [ aws ]);
 
       checks = mapAttrs (_: pkgs:
         let pkgs' = pkgs.extend serokell-nix.overlay;
