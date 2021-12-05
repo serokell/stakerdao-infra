@@ -4,7 +4,7 @@ steps:
   - nix-build -A nixosSystems
 - label: terraform validate
   commands:
-  - nix-shell --run "terraform init -backend=false terraform && terraform validate terraform"
+  - nix-shell --run "cd terraform; terraform init -backend=false && terraform validate"
 - label: Check flake
   commands:
   - nix-build -A checks.x86_64-linux
