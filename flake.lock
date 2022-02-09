@@ -28,11 +28,11 @@
         "stackage": "stackage"
       },
       "locked": {
-        "lastModified": 1638650670,
-        "narHash": "sha256-zxWnvKwer/nBdjRIW4dc8+8XOSXx7Wzfr/aOo7m41Ew=",
+        "lastModified": 1643971842,
+        "narHash": "sha256-JIfi6RZAL81LTe0Hxyu4l/9LHITvoX+y8XKJsuyhxTc=",
         "ref": "master",
-        "rev": "bd2a709068e97e84270ba147235a1fadc74f8f2c",
-        "revCount": 725,
+        "rev": "60ca7a41260d63d1eb02209cee631809439b31e7",
+        "revCount": 751,
         "type": "git",
         "url": "ssh://git@github.com/stakerdao/bridge-web"
       },
@@ -181,11 +181,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1638665590,
-        "narHash": "sha256-nhtfL3z4TizWHemyZvgLvq11FhYX5Ya4ke+t6Np5PKQ=",
+        "lastModified": 1643787431,
+        "narHash": "sha256-8IwuVgXulRE3ZWq6z8mytarawC32pKPKR20EyDtSH+w=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "715e92a13018bc1745fb680b5860af0c5641026a",
+        "rev": "4154ba1aaaf7333a916384c348d867d03b6f1409",
         "type": "github"
       },
       "original": {
@@ -233,11 +233,11 @@
     "flake-compat_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1627913399,
-        "narHash": "sha256-hY8g6H2KFL8ownSiFeMOjwPC8P0ueXpCVEbxgda3pko=",
+        "lastModified": 1641205782,
+        "narHash": "sha256-4jY7RCWUoZ9cKD8co0/4tFARpWB+57+r1bLLvXNJliY=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "12c64ca55c1014cdc1b16ed5a804aa8576601ff2",
+        "rev": "b7547d3eed6f32d06102ead8991ec52ab0a4f1a7",
         "type": "github"
       },
       "original": {
@@ -926,11 +926,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1632086102,
-        "narHash": "sha256-wVTcf0UclFS+zHtfPToB13jIO7n0U9N50MuRbPjQViE=",
+        "lastModified": 1643472818,
+        "narHash": "sha256-qzVPxKDUubYIxKRSuDl/JgzXWSmGvUVYny9SxFMfPJM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e0ce3c683ae677cf5aab597d645520cddd13392b",
+        "rev": "7f65e4abd5ecaad12d2d26e4380d1a7d8edafea7",
         "type": "github"
       },
       "original": {
@@ -1049,11 +1049,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1638383949,
-        "narHash": "sha256-k7oMUrp1cMBj59uihyocJVqi4jbU16ycHQqGTJxH1b0=",
+        "lastModified": 1644387507,
+        "narHash": "sha256-PX1sWtet0N0s83SKdZVR0zFJ1CiN86Cw/IEeQe1s4MY=",
         "owner": "serokell",
         "repo": "serokell.nix",
-        "rev": "faebe5b14155d045ae5d3f76193c8e99e664af1b",
+        "rev": "e40718ac932e7c629c5f863ed27c72d516dc1356",
         "type": "github"
       },
       "original": {
@@ -1160,11 +1160,11 @@
     },
     "utils_2": {
       "locked": {
-        "lastModified": 1631561581,
-        "narHash": "sha256-3VQMV5zvxaVLvqqUrNz3iJelLw30mIVSfZmAaauM3dA=",
+        "lastModified": 1642700792,
+        "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "7e5bf3925f6fbdfaf50a2a7ca0be2879c4261d19",
+        "rev": "846b2ae0fc4cc943637d3d1def4454213e203cba",
         "type": "github"
       },
       "original": {
