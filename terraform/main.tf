@@ -7,6 +7,16 @@ terraform {
     region = "eu-west-2"
     profile = "stakerdao"
   }
+
+  ## Prevent unwanted updates
+  required_version = "0.13.7" # Use nix-shell or nix develop
+
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 3.43.0"
+    }
+  }
 }
 
 provider  "aws" {
@@ -48,7 +58,7 @@ resource "aws_instance" "bridge_testing" {
   ]
 
   # Instance parameters
-  instance_type = "t3a.nano"
+  instance_type = "t3a.micro"
   monitoring = true
 
   # Disk type, size, and contents
